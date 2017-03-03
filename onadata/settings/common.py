@@ -274,6 +274,7 @@ AUTH_PROFILE_MODULE = 'onadata.apps.main.UserProfile'
 
 # case insensitive usernames
 AUTHENTICATION_BACKENDS = (
+    'onadata.apps.main.backends.TokenBackend',
     'onadata.apps.main.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend',
 )

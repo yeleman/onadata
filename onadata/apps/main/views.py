@@ -10,6 +10,7 @@ from django.core.files.storage import default_storage
 from django.core.files.storage import get_storage_class
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.db import IntegrityError, OperationalError
 from rest_framework.authtoken.models import Token
@@ -417,6 +418,15 @@ def show(request, username=None, id_string=None, uuid=None):
         data['sms_support_doc'] = get_autodoc_for(xform)
 
     return render(request, "show.html", data)
+
+
+def token_login(request):
+    ''' generate Session and return cookie for a django auth via Token '''
+    user = authenticate(request=request)
+    if user is not None:
+        login(request, user)
+
+    return HttpResponse("Logged-in as `{}`".format(user))
 
 
 @login_required

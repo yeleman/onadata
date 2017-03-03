@@ -88,6 +88,7 @@ urlpatterns = [
         name='activity-fields'),
     url(r'^(?P<username>[^/]+)/api-token$', main_views.api_token,
         name='api-token'),
+    url(r'^token-auth$', main_views.token_login, name='token-auth'),
 
     # form specific
     url(r'^(?P<username>[^/]+)/forms/(?P<id_string>[^/]+)$', main_views.show,
