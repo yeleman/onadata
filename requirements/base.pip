@@ -9,7 +9,7 @@
 -e git+https://github.com/onaio/django-digest.git@django-1.9-fixes#egg=django-digest
 -e git+https://github.com/jbalogh/django-nose.git#egg=django-nose
 -e git+https://github.com/onaio/python-json2xlsclient.git#egg=j2xclient
--e git+https://bitbucket.org/fomcl/savreaderwriter.git@v3.4.2#egg=savreaderwriter
+savreaderwriter==3.4.2
 alabaster==0.7.7          # via sphinx
 amqp==1.4.9               # via kombu, librabbitmq
 anyjson==0.3.3            # via kombu
