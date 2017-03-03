@@ -7,13 +7,9 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 from django.contrib.auth import authenticate, login
-from django.contrib import messages
-=======
 from django.core.files.storage import default_storage, get_storage_class
 from django.core.urlresolvers import reverse
->>>>>>> onaio/master
 from django.db import IntegrityError, OperationalError
 from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseForbidden, HttpResponseNotFound,
