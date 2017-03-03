@@ -1,6 +1,7 @@
 import json
 import decimal
 import math
+from collections import OrderedDict
 
 from cStringIO import StringIO
 from django.utils.encoding import smart_text
@@ -146,7 +147,7 @@ class XFormListRenderer(BaseRenderer):
                 self._to_xml(xml, item)
                 xml.endElement(self.element_node)
 
-        elif isinstance(data, dict):
+        elif isinstance(data, (dict, OrderedDict)):
             for key, value in six.iteritems(data):
                 xml.startElement(key, {})
                 self._to_xml(xml, value)
