@@ -83,7 +83,7 @@ USE_L10N = True
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'http://localhost:8000/media/'
+MEDIA_URL = 'http://ramed-server/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -96,8 +96,9 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
 
 # Enketo URL
-ENKETO_PROTOCOL = 'https'
-ENKETO_URL = 'https://enketo.ona.io/'
+ENKETO_PROTOCOL = 'http'
+#ENKETO_URL = 'https://enketo.ona.io/'
+ENKETO_URL = 'http://localhost:7000/'
 ENKETO_API_SURVEY_PATH = '/api_v1/survey'
 ENKETO_API_INSTANCE_PATH = '/api_v1/instance'
 ENKETO_PREVIEW_URL = urljoin(ENKETO_URL, ENKETO_API_SURVEY_PATH + '/preview')
@@ -473,6 +474,7 @@ if isinstance(TEMPLATE_OVERRIDE_ROOT_DIR, basestring):
 
 # Set wsgi url scheme to HTTPS
 os.environ['wsgi.url_scheme'] = 'https'
+os.environ['wsgi.url_scheme'] = 'http'
 
 SUPPORTED_MEDIA_UPLOAD_TYPES = [
     'image/jpeg',
