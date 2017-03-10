@@ -454,9 +454,9 @@ class Instance(models.Model, InstanceBaseClass):
         self.version = self.xform.version
         super(Instance, self).save(*args, **kwargs)
 
-    def set_deleted(self, deleted_at=timezone.now()):
+    def set_deleted(self, deleted_at=timezone.now(), force=False):
         self.deleted_at = deleted_at
-        self.save()
+        self.save(force=force)
         # force submission count re-calculation
         self.xform.submission_count(force_update=True)
         self.parsed_instance.save()

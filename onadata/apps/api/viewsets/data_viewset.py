@@ -70,7 +70,7 @@ def get_data_and_form(kwargs):
     return (data_id, kwargs.get('format'))
 
 
-def delete_instance(instance):
+def delete_instance(instance, force=False):
     """
     Function that calls Instance.set_deleted and catches any exception that may
      occur.
@@ -78,7 +78,7 @@ def delete_instance(instance):
     :return:
     """
     try:
-        instance.set_deleted(timezone.now())
+        instance.set_deleted(timezone.now(), force=force)
     except FormInactiveError as e:
         raise ParseError(str(e))
 
@@ -263,6 +263,7 @@ class DataViewSet(AnonymousUserPublicFormsMixin,
 
     def destroy(self, request, *args, **kwargs):
         self.object = self.get_object()
+        force = bool(self.request.query_params.get('force'))
 
         if isinstance(self.object, XForm):
             raise ParseError(_(u"Data id not provided."))
@@ -270,7 +271,7 @@ class DataViewSet(AnonymousUserPublicFormsMixin,
 
             if request.user.has_perm(
                     CAN_DELETE_SUBMISSION, self.object.xform):
-                delete_instance(self.object)
+                delete_instance(self.object, force)
             else:
                 raise PermissionDenied(_(u"You do not have delete "
                                          u"permissions."))
